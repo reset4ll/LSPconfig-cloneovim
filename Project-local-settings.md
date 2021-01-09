@@ -1,5 +1,3 @@
-## Project local settings
-
 Local settings can be configured by enabling the exrc option with `set exrc` in your init.vim
 and creating a `.nvimrc` file in the project's root directory. If neovim is launched
 in the same directory as `.nvimrc`, it will evaluate your user configuration first,
