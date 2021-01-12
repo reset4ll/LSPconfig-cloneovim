@@ -1,0 +1,1 @@
+We list here some snippets to customize the LSP experience. These are too complex/arbitrary to be enabled by default.
