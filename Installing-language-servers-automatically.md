@@ -2,3 +2,4 @@ There are an emerging number of plugins that implement package management functi
 
 * [nvim-lspinstall](https://github.com/anott03/nvim-lspinstall)
 * [vim-lsp-settings](https://github.com/mattn/vim-lsp-settings)
+* [nvim-lspupdate](https://github.com/alexaandru/nvim-lspupdate)
