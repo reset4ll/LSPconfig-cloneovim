@@ -56,7 +56,12 @@ Then make sure that the above script is marked as executable, and in a runnable 
     end
 
     -- Note that via the `manager` from `server_per_root_dir_manager`, we'll get a separate instance
-    -- of `clangd` as we switch between files, or even projects inside of the right container
+    -- of `clangd` as we switch between files, or even projects, inside of the right container
+    --
+    -- Finally, we've formed the "basename of a project" to pass to our `cclangd` script, which will
+    -- then look for a matching container, or run `clangd` normally if no matching container is found
+    --    /path/to/my/project
+    -- would look for a container named `project`, and `docker exec` a `clangd` instance there, etc.
     lspconfig.clangd.setup{
         cmd = {
             'cclangd',
