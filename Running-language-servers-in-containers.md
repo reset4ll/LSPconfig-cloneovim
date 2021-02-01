@@ -72,6 +72,8 @@ Then make sure that the above script is marked as executable, and in a runnable 
 
 in addition to anything else you've already setup, like a custom `on_attach` function, etc. although the configuration additions above are all that is required.
 
-#### Additional tip
+#### Additional clangd tips
 
-If you have a project that is setup in such a way that header files aren't installed to their standard locations on your system, each binary requires customized linking, etc. I'd highly recommend playing around with either [compiledb](https://pypi.org/project/compiledb/) or [Bear](https://github.com/rizsotto/Bear). Both of these will generate `compile_commands.json` files, which are already recognized by the default `clangd` configuration in this repo.
+* If you have a project that is setup in such a way that header files aren't installed to their standard locations on your system, each binary requires customized linking, etc. I'd highly recommend playing around with either [compiledb](https://pypi.org/project/compiledb/) or [Bear](https://github.com/rizsotto/Bear). Both of these will generate `compile_commands.json` files, which are already recognized by the default `clangd` configuration in this repo.
+* You can edit the `cclangd` script to redirect `STDERR` to a file if you are interested in debugging things, just change `... 2>/dev/null` to whatever filepath you like; `... 2>/tmp/clangd.log`, etc.
+* The builtin client and the handling in this repo. do a great job of handling root paths and whatnot, but you might have to play around with the `-w` option of [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) depending on how your project is setup.
