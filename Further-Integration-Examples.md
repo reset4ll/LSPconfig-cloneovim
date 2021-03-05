@@ -1,6 +1,6 @@
 # Further Integration Examples
 
-The integration examples listed [here](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#) don't gives specific examples of configuring, as some of the language servers are used for general linting / prettier integration this page aims to gives some examples of for these.
+The integration examples listed [here](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#) don't gives specific examples of configuring, as some of the language servers are used for general linting / prettier integration this page aims to give some examples of for these.
 
 # diagnosticls
 [Auto generated config link](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#diagnosticls)
