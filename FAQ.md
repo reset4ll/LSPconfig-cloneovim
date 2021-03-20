@@ -1,6 +1,6 @@
 ### Should I use CoC.nvim, vim-lsc, vim-lsp, or neovim's built-in language server client? Which is best?
 
-All clients are great. Pick whichever makes you happy. Reasons you may choose the neovim's built-in language server client:
+All clients are great and have amazing communities of contributors. Pick whichever makes you happy. Reasons you may choose the neovim's built-in language server client:
 
 * It's very extensible, all handlers can be overridden to customize functionality in your init.vim/lua
 * Lua is a nice language to work in
