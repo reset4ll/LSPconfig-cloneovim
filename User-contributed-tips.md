@@ -135,7 +135,6 @@ The following is an example of integrating with eslint, it uses the **.eslinrc.j
       return util.root_pattern("tsconfig.json")(fname) or
       util.root_pattern(".eslintrc.js", ".git")(fname);
     end,
-    init_options = {documentFormatting = true},
     settings = {
       rootMarkers = {".eslintrc.js", ".git/"},
       languages = {
@@ -166,7 +165,6 @@ require "lspconfig".efm.setup {
     return util.root_pattern("tsconfig.json")(fname) or
     util.root_pattern(".eslintrc.js", ".git")(fname);
   end,
-  init_options = {documentFormatting = true},
   settings = {
     rootMarkers = {".eslintrc.js", ".git/"},
     languages = {
