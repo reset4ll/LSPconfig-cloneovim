@@ -27,7 +27,7 @@ If the server supports [`LocationLink`](https://microsoft.github.io/language-ser
 
 nvim-lspconfig offers the ClangdSwitchSourceHeader command by default. It simply replaces the current buffer with the corresponding file. If you'd like to open the corresponding file in a new split/vsplit, you can add such commands easily:
 
-```
+```lua
 local function switch_source_header_splitcmd(bufnr, splitcmd)
     bufnr = require'lspconfig'.util.validate_bufnr(bufnr)
     local params = { uri = vim.uri_from_bufnr(bufnr) }
@@ -70,7 +70,7 @@ nnoremap <leader>h :ClangdSwitchSourceHeaderVSplit<CR>
 ## eslint
 The following is an example of integrating with eslint, it uses the **.eslinrc.js** file to identify the project root, and then uses the instance of eslint available in **node_modules**:
 
-```
+```lua
   require'lspconfig'.diagnosticls.setup{
     filetypes = {"javascript", "typescript"},
     root_dir = function(fname)
@@ -120,7 +120,7 @@ The following is an example of integrating with eslint, it uses the **.eslinrc.j
 ## eslint
 The following is an example of integrating with eslint, it uses the **.eslinrc.js** file to identify the project root, and then uses the instance of eslint available in **node_modules**:
 
-```
+```lua
   local eslint = {
     lintCommand = "./node_modules/.bin/eslint -f unix --stdin --stdin-filename ${INPUT}",
     lintIgnoreExitCode = true,
@@ -148,7 +148,7 @@ The following is an example of integrating with eslint, it uses the **.eslinrc.j
 ## eslint_d
 This example uses eslint_d, which is much faster. Read more [here](https://www.npmjs.com/package/eslint_d)
 
-```
+```lua
 local eslint = {
   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
   lintStdin = true,
