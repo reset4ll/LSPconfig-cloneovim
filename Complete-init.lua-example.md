@@ -1,6 +1,6 @@
 For some users, following the readme may still prove a barrier to entry. Here is an example of a "batteries-included" neovim configuration using lspconfig with auto-completion support via compe. See [the defaults.nvim repo](https://github.com/mjlbach/defaults.nvim) for more details.
 
-```
+```lua
 -- Install packer
 local execute = vim.api.nvim_command
 
