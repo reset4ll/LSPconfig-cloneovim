@@ -7,7 +7,11 @@ followed by the local configuration. An example `.nvimrc` might be as follows
 lua << EOF
   local nvim_lsp = require('lspconfig')
   local servers = {'rust_analyzer'}
-  nvim_lsp.rust_analyzer.setup { root_dir= function() vim.fn.getcwd() end; }
+  nvim_lsp.rust_analyzer.setup {
+    root_dir = function()
+      return vim.fn.getcwd()
+    end
+  }
 EOF
 ```
 
