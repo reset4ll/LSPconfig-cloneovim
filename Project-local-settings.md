@@ -6,7 +6,6 @@ followed by the local configuration. An example `.nvimrc` might be as follows
 ```
 lua << EOF
   local nvim_lsp = require('lspconfig')
-  local servers = {'rust_analyzer'}
 
   nvim_lsp.rust_analyzer.setup {
     root_dir = function()
@@ -18,3 +17,17 @@ EOF
 
 Be aware, after enabling exrc, neovim will execute any `.nvimrc` or `.exrc` owned by 
 your user, including git clones.
+
+If the only thing you care about configuring is the language server's settings, you might be able to use the `on_init` hook and the `workspace/didChangeConfiguration` notification:
+
+```
+local nvim_lsp = require('lspconfig')
+
+nvim_lsp.rust_analyzer.setup {
+  on_init = function(client)
+    client.config.settings.xxx = "yyyy"
+    client.notify("workspace/didChangeConfiguration")
+    return true
+  end
+}
+```
