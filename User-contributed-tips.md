@@ -71,6 +71,8 @@ nnoremap <leader>h :ClangdSwitchSourceHeaderVSplit<CR>
 The following is an example of integrating with eslint, it uses the **.eslinrc.js** file to identify the project root, and then uses the instance of eslint available in **node_modules**:
 
 ```lua
+  local util = require "lspconfig".util
+
   require'lspconfig'.diagnosticls.setup{
     filetypes = {"javascript", "typescript"},
     root_dir = function(fname)
@@ -126,6 +128,7 @@ The following is an example of integrating with eslint, it uses the **.eslinrc.j
     lintIgnoreExitCode = true,
     lintStdin = true
   }
+  local util = require "lspconfig".util
   
   require "lspconfig".efm.setup {
     --cmd = {"efm-langserver",},
