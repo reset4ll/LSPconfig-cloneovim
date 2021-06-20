@@ -1,5 +1,28 @@
 We list here some snippets to customize the LSP experience. These are too complex/arbitrary to be enabled by default.
 
+# Range Formatting With a Motion
+
+If your language server supports formatting a range of text (as opposed to a whole file), you can use this snippet to map a key to formatting a range with a motion.  For example, with this code, `gmip` in normal mode will format a paragraph.
+
+```lua
+function format_range_operator()
+  local old_func = vim.go.operatorfunc
+  _G.op_func_formatting = function()
+    local start = vim.api.nvim_buf_get_mark(0, '[')
+    local finish = vim.api.nvim_buf_get_mark(0, ']')
+    vim.lsp.buf.range_formatting({}, start, finish)
+    vim.go.operatorfunc = old_func
+    _G.op_func_formatting = nil
+  end
+  vim.go.operatorfunc = 'v:lua.op_func_formatting'
+  vim.api.nvim_feedkeys('g@', 'n', false)
+end
+vim.api.nvim_set_keymap("n", "gm", "<cmd>lua format_range_operator()<CR>", {noremap = true})
+```
+
+See https://github.com/neovim/neovim/issues/14680 for context.
+
+
 # Peek Definition
 
 To open the target of a `textDocument/definition` request in a floating window (as in VS Code's "Peek Definition"), you can use the following snippet:
