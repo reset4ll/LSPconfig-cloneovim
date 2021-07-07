@@ -1,4 +1,4 @@
-* borders: borders are built-into the neovim core handler. The borders can be styled by passing in a character and highlight group. Highlight groups must be set with an autocmd to avoid being overwritten by your colorscheme.
+* borders on floating windows: borders are built-into the neovim core handler. The borders can be styled by passing in a character and highlight group. Highlight groups must be set with an autocmd to avoid being overwritten by your colorscheme.
 
 ```lua
 vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]]
