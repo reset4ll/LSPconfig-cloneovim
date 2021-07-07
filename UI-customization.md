@@ -1,4 +1,4 @@
-### borders
+### Borders
 
 Floating windows with borders are built-into the neovim core handler. The borders can be styled by passing in a character and highlight group. Highlight groups must be set with an autocmd to avoid being overwritten by your colorscheme.
 
