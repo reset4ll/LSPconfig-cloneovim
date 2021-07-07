@@ -65,7 +65,7 @@ end
 
 return M
 ```
-### virtual text symbols
+### Virtual text symbols
 ```
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
