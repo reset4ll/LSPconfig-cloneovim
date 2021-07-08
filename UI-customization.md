@@ -75,7 +75,7 @@ for type, icon in pairs(signs) do
 end
 ```
 
-### [WIP] print diagnostics in status line
+### Print diagnostics in status line
 
 ```lua
 function PrintDiagnostics(opts, bufnr, line_nr, client_id)
@@ -95,7 +95,7 @@ function PrintDiagnostics(opts, bufnr, line_nr, client_id)
       diagnostic_message = diagnostic_message .. "\n"
     end
   end
-  print(diagnostic_message)
+  vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
 end
 
 vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
