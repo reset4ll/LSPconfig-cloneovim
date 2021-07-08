@@ -66,7 +66,7 @@ end
 return M
 ```
 ### Virtual text symbols
-```
+```lua
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
 for type, icon in pairs(signs) do
@@ -77,7 +77,7 @@ end
 
 ### [WIP] print diagnostics in status line
 
-```
+```lua
 function PrintDiagnostics(opts, bufnr, line_nr, client_id)
   opts = opts or {}
 
