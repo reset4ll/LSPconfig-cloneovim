@@ -11,7 +11,9 @@ Client-side functionality such as auto-completion and auto-pairs are not part of
 
 # Should I use CoC.nvim, vim-lsc, vim-lsp, or neovim's built-in language server client?
 
-All clients are terrific and have amazing communities of contributors. Reasons you may choose the neovim's built-in language server client:
+All clients are terrific and have amazing communities of contributors. 
+
+Reasons you may choose the neovim's built-in language server client:
 
 * It's very extensible
   * all UI elements and behavior can be styled to your liking by overriding a handler in your init.vim/init.lua
