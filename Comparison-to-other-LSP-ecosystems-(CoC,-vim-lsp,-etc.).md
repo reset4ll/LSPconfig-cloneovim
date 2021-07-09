@@ -34,7 +34,7 @@ All clients are terrific and have amazing communities of contributors.
 * CoC.nvim uses a fork of vscode's tsserver extension for typescript/javascript
   * tsserver does not implement the LSP specification yet (there are plans to do so)
   * the vscode extension uses it's own custom interface to tsserver
-  * nvim-lspconfig provides support for the theia-IDE [https://github.com/theia-ide/typescript-language-server] wrapper around tsserver
+  * nvim-lspconfig provides support for the [theia-IDE wrapper around tsserver](https://github.com/theia-ide/typescript-language-server)
   * For now, CoC.nvim will provide a closer experience to vscode's typescript extension than nvim-lspconfig + theia + null-ls
 * CoC provides functionality that is unrelated to language server support (coc-explorer, coc-pairs, coc-lists)
 * CoC.nvim has a dedicated plugin (and maintainer) per language
