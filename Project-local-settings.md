@@ -3,7 +3,7 @@ and creating a `.nvimrc` file in the project's root directory. If neovim is laun
 in the same directory as `.nvimrc`, it will evaluate your user configuration first,
 followed by the local configuration. An example `.nvimrc` might be as follows
 
-```
+```vim
 lua << EOF
   local nvim_lsp = require('lspconfig')
 
@@ -20,7 +20,7 @@ your user, including git clones.
 
 If the only thing you care about configuring is the language server's settings, you might be able to use the `on_init` hook and the `workspace/didChangeConfiguration` notification:
 
-```
+```lua
 local nvim_lsp = require('lspconfig')
 
 nvim_lsp.rust_analyzer.setup {
