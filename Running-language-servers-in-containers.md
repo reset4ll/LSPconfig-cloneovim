@@ -11,7 +11,7 @@ My creating of this page came out of a conversation with [@mjlbach](https://gith
 [clangd](https://clangd.llvm.org/) is a _C_ family language server, as the name implies. In order to get this working inside of a container, while _Neovim_ runs on the host system, the setup might look something like the following:
 
 _cclangd_: A shell script wrapper to run `clangd` inside of the passed container, or normally if no matching container is found
-```
+```sh
 #! /bin/sh
 
 # The name of the container to run `clangd` in must be passed as the first and only argument
@@ -31,7 +31,7 @@ fi
 
 Then make sure that the above script is marked as executable, and in a runnable location on your system. On _Linux_, this mean that it lies somewhere on your `$PATH`, and has bee altered with `chmod +x /path/to/cclangd`. Then for your own client configuration via _Neovim_:
 
-```
+```lua
     -- Notably _not_ including `compile_commands.json`, as we want the entire project
     local root_pattern = lspconfig.util.root_pattern('.git')
 
