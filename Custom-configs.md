@@ -1,1 +1,0 @@
-See [ADVANCED_README.md](https://github.com/neovim/nvim-lspconfig/blob/master/ADVANCED_README.md)
