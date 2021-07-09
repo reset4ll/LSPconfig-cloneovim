@@ -5,6 +5,8 @@ To enable snippets support for a given server with LuaSnip, the main steps are t
 * set up your snippets source, and the autocompletion plugin to acknowledge the snippets source
 * map the confirm and expand snippets keybinds.
 
+Here is a complete example for compe and LuaSnip:
+
 ```lua
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
