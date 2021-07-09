@@ -53,7 +53,7 @@ local check_back_space = function()
 end
 
 -- Use (s-)tab to:
---- move to prev/next item in completion menuone
+--- move to prev/next item in completion menu
 --- jump to prev/next snippet's placeholder
 local luasnip = require 'luasnip'
 
@@ -79,7 +79,7 @@ _G.s_tab_complete = function()
   end
 end
 
--- Map tab to the above tab complete functiones
+-- Map tab to the above tab complete functions
 vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.tab_complete()', { expr = true })
 vim.api.nvim_set_keymap('s', '<Tab>', 'v:lua.tab_complete()', { expr = true })
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
