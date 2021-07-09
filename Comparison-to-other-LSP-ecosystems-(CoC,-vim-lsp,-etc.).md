@@ -13,7 +13,7 @@ Client-side functionality such as auto-completion and auto-pairs are not part of
 
 All clients are terrific and have amazing communities of contributors. 
 
-Reasons you may choose the neovim's built-in language server client:
+**Reasons you may choose the neovim's built-in language server client:**
 
 * It's very extensible
   * all UI elements and behavior can be styled to your liking by overriding a handler in your init.vim/init.lua
@@ -25,7 +25,7 @@ Reasons you may choose the neovim's built-in language server client:
 * There are no dependencies for running the built-in client
   * many servers are written in javasript and will require node.js
   
-Reasons you might prefer CoC.nvim:
+**Reasons you might prefer CoC.nvim:**
 
 * CoC.nvim manages it's own plugins (snippets, fuzzy searchers, lists)
   * the built-in client does not need to be installed
