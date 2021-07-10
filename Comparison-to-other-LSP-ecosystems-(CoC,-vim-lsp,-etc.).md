@@ -1,6 +1,6 @@
 # What is included in the built-in client?
 
-The built-in language server client implements the language server protocol as the [specification](https://microsoft.github.io/language-server-protocol/specifications/specification-3-17/#textDocument_signatureHelp) intends. The client is extensible, so plugins are free (and encouraged) to implement support for custom language.
+The built-in language server client implements the language server protocol as the [specification](https://microsoft.github.io/language-server-protocol/specifications/specification-3-17/#textDocument_signatureHelp) intends. The client is extensible, so plugins are free (and encouraged) to implement support for servers which add additional functionality outside the spec.
 
 Client-side functionality such as auto-completion and auto-pairs are not part of the LSP specification, and are not built into neovim. Snippets are provided by certain language servers, and the built-in omnifunc has primitive snippet support. These are generic client capabilities that are broader than the language server protocol, but often can use language servers as an additional source. The following plugins provide good integration with the built-in client:
 
