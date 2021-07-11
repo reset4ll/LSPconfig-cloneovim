@@ -6,3 +6,4 @@ Some servers send requests outside of the language server protocol specification
 * [nvim-metals](https://github.com/scalameta/nvim-metals)
 * [flutter-tools.nvim](https://github.com/akinsho/flutter-tools.nvim)
 * [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim/)
+* [lean.nvim](https://github.com/Julian/lean.nvim)
