@@ -2,8 +2,8 @@ Nvim-lspconfig is meant to implement basic configuration and settings for most l
 
 Some servers send requests outside of the language server protocol specification to extend the functionality of the protocol. Eclipse JDTLS is one such example. An ecosystem of per language plugins is forming around neovim's core implementation to provide an enhanced experience compared to nvim-lspconfig. We recommend you install these plugins if you are using the language in question. Here are some recommendations:
 
-* [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls) 
-* [nvim-metals](https://github.com/scalameta/nvim-metals)
-* [flutter-tools.nvim](https://github.com/akinsho/flutter-tools.nvim)
-* [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim/)
-* [lean.nvim](https://github.com/Julian/lean.nvim)
+* [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls) (Java's [Eclipse JDT](https://github.com/eclipse/eclipse.jdt.ls))
+* [nvim-metals](https://github.com/scalameta/nvim-metals) (Scala's [Metals](https://scalameta.org/metals/))
+* [flutter-tools.nvim](https://github.com/akinsho/flutter-tools.nvim) ([Flutter](https://flutter.dev/))
+* [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim/) (Rust's [rust-analyzer](https://rust-analyzer.github.io/))
+* [lean.nvim](https://github.com/Julian/lean.nvim) ([Lean](https://leanprover.github.io/))
