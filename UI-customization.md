@@ -65,7 +65,7 @@ end
 
 return M
 ```
-### Virtual text symbols
+### Change diagnostic symbols in the sign column (gutter)
 ```lua
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 
