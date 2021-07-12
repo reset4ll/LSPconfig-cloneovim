@@ -200,3 +200,77 @@ require "lspconfig".efm.setup {
   }
 }
 ```
+
+# Customize LSP CodeLens and Signs
+
+It can be helpful to customize the severity levels that get displayed as a gutter sign and/or codelens virtual text. For example, maybe you want to show everything in the gutter, but only Errors as virtualtext.
+
+```lua
+-- Set which codelens text levels to show
+local original_set_virtual_text = vim.lsp.diagnostic.set_virtual_text
+local set_virtual_text_custom = function(diagnostics, bufnr, client_id, sign_ns, opts)
+    opts = opts or {}
+    -- show all messages that are Warning and above (Warning, Error)
+    opts.severity_limit = "Warning"
+    original_set_virtual_text(diagnostics, bufnr, client_id, sign_ns, opts)
+end
+
+vim.lsp.diagnostic.set_virtual_text = set_virtual_text_custom
+```
+
+Or maybe you want to only show Errors in the gutter,
+```lua
+local orig_set_signs = vim.lsp.diagnostic.set_signs
+local set_signs_limited = function(diagnostics, bufnr, client_id, sign_ns, opts)
+  opts = opts or {}
+  opts.severity_limit = "Error"
+  orig_set_signs(diagnostics, bufnr, client_id, sign_ns, opts)
+end
+
+vim.lsp.diagnostic.set_signs = set_signs_limited
+```
+[source](https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics_be_limited_to_show_a/gvd8rb9/?utm_source=reddit&utm_medium=web2x&context=3)
+
+Another configuration that only shows the most severe item in the gutter per line,
+```lua
+-- Capture real implementation of function that sets signs
+local orig_set_signs = vim.lsp.diagnostic.set_signs
+local set_signs_limited = function(diagnostics, bufnr, client_id, sign_ns, opts)
+
+  -- original func runs some checks, which I think is worth doing
+  -- but maybe overkill
+  if not diagnostics then
+    diagnostics = diagnostic_cache[bufnr][client_id]
+  end
+
+  -- early escape
+  if not diagnostics then
+    return
+  end
+
+  -- Work out max severity diagnostic per line
+  local max_severity_per_line = {}
+  for _,d in pairs(diagnostics) do
+    if max_severity_per_line[d.range.start.line] then
+      local current_d = max_severity_per_line[d.range.start.line]
+      if d.severity < current_d.severity then
+        max_severity_per_line[d.range.start.line] = d
+      end
+    else
+      max_severity_per_line[d.range.start.line] = d
+    end
+  end
+
+  -- map to list
+  local filtered_diagnostics = {}
+  for i,v in pairs(max_severity_per_line) do
+    table.insert(filtered_diagnostics, v)
+  end
+
+  -- call original function
+  orig_set_signs(filtered_diagnostics, bufnr, client_id, sign_ns, opts)
+end
+vim.lsp.diagnostic.set_signs = set_signs_limited
+```
+
+[source](https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics_be_limited_to_show_a/gvd8rb9/?utm_source=reddit&utm_medium=web2x&context=3)
