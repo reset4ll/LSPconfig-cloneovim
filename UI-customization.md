@@ -108,6 +108,8 @@ See https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics
 
 ### Show source in diagnostics
 
+This is useful when you're running multiple language servers
+
 **Result:**
 - Virtual Text
 ```typescript
