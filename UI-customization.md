@@ -102,7 +102,9 @@ vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
 ```
 ### Show line diagnostics automatically in hover window
 
-`autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics()`
+```lua 
+autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics()
+```
 
 ### Filter by severity in signcolum
 See https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics_be_limited_to_show_a/
