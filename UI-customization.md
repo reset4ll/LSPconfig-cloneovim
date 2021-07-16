@@ -103,6 +103,8 @@ vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
 ### Show line diagnostics automatically in hover window
 
 ```lua 
+-- You will likely want to reduce updatetime which affects CursorHold
+vim.o.updatetime = 250
 autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})
 ```
 
