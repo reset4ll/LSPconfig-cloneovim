@@ -27,6 +27,9 @@ All clients are terrific and have amazing communities of contributors.
   
 **Reasons you might prefer CoC.nvim:**
 
+* CoC provides functionality that is unrelated to (and beyond) language server support (autocompletion, coc-explorer, coc-pairs, coc-lists)
+  * the built-in client does not implement autocompletion, you will need a plugin for this
+  * autocompletion is not a part of the LSP specification, only completion is
 * CoC.nvim manages it's own plugins (snippets, fuzzy searchers, lists)
   * the built-in client does not need to be installed
   * users will typically install lspconfig + an autocomplete extension + a snippets extension via their choice of package manager
@@ -36,7 +39,6 @@ All clients are terrific and have amazing communities of contributors.
   * the vscode extension uses it's own custom interface to tsserver
   * nvim-lspconfig provides support for the [theia-IDE wrapper around tsserver](https://github.com/theia-ide/typescript-language-server)
   * For now, CoC.nvim will provide a closer experience to vscode's typescript extension than nvim-lspconfig + theia + null-ls
-* CoC provides functionality that is unrelated to language server support (coc-explorer, coc-pairs, coc-lists)
 * CoC.nvim has a dedicated plugin (and maintainer) per language
   * nvim-lspconfig supports a large number of language servers, but doesn't implement off-spec functionality like CoC does for each one
   * there are an increasing number of plugins built around the built-in LSC (nvim-jdtls, nvim-metals, flutter-tools.nvim)
