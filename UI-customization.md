@@ -146,7 +146,8 @@ local function goto_definition(split_cmd)
 end
 
 vim.lsp.handlers["textDocument/definition"] = goto_definition('split')
-```lua
+```
+
 ### Show source in diagnostics
 
 This is useful when you're running multiple language servers
