@@ -112,7 +112,39 @@ autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({f
 ### Filter by severity in signcolum
 See https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics_be_limited_to_show_a/
 
+### Go-to definition in a split window
+```lua
+local function goto_definition(split_cmd)
+  local util = vim.lsp.util
 
+  local handler = function(_, method, result)
+    if result == nil or vim.tbl_isempty(result) then
+      local _ = log.info() and log.info(method, "No location found")
+      return nil
+    end
+
+    if split_cmd then
+      vim.cmd(split_cmd)
+    end
+
+    if vim.tbl_islist(result) then
+      util.jump_to_location(result[1])
+
+      if #result > 1 then
+        util.set_qflist(util.locations_to_items(result))
+        api.nvim_command("copen")
+        api.nvim_command("wincmd p")
+      end
+    else
+      util.jump_to_location(result)
+    end
+  end
+
+  return handler
+end
+
+vim.lsp.handlers["textDocument/definition"] = goto_definition('split')
+```lua
 ### Show source in diagnostics
 
 This is useful when you're running multiple language servers
