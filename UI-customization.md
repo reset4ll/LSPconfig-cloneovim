@@ -116,6 +116,8 @@ See https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics
 ```lua
 local function goto_definition(split_cmd)
   local util = vim.lsp.util
+  local log = require("vim.lsp.log")
+  local api = vim.api
 
   local handler = function(_, method, result)
     if result == nil or vim.tbl_isempty(result) then
