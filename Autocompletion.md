@@ -81,8 +81,11 @@ vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
 
 To reproduce
 1. Make sure tsserver is installed according to the lspconfig wiki, and if you want, use our [autocompletion example init.lua](https://github.com/mjlbach/defaults.nvim/blob/master/init.lua).
-2. mkdir test && cd test && npm init
-3. npm install lodash --save
-4. npm install @types/lodash --save-dev
-5. add import { } from "lodash" to index.js
-6. type debounce on the next line and hit enter (<CR>)
+2. `mkdir test && cd test && npm init`
+3. Follow the prompts to create a project
+3. `npm install lodash --save`
+4. `npm install @types/lodash --save-dev`
+5. `echo import { } from "lodash" >> index.js`
+6. `nvim index.js`
+7. Check the language server is running with `:LspInfo`
+8. type `debounce` on line 2 and hit `enter` (`<CR>`)
