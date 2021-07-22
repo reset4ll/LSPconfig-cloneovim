@@ -90,4 +90,4 @@ To reproduce
 7. Check the language server is running with `:LspInfo`
 8. type `debounce` on line 2 and hit `enter` (`<CR>`)
 
-Note: This currently does not work with typescript server (theia) on Windows, see https://github.com/theia-ide/typescript-language-server/issues/135
+Note: This currently does not work with typescript server (theia) on Windows due to an upstream bug in theia, see https://github.com/theia-ide/typescript-language-server/issues/135
