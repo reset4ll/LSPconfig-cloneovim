@@ -78,7 +78,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 })
 ```
 
-Note: **With the default settings, you will not see updated diagnostics until you leave insert mode. Set `update_in_insert = true` if you diagnostics to update while in insert mode**.
+Note: **With the default settings, you will not see updated diagnostics until you leave insert mode. Set `update_in_insert = true` if you want diagnostics to update while in insert mode**.
 
 ### Change diagnostic symbols in the sign column (gutter)
 ```lua
