@@ -78,6 +78,8 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 })
 ```
 
+Note: **With the default settings, you will not see updated diagnostics until you leave insert mode**.
+
 ### Change diagnostic symbols in the sign column (gutter)
 ```lua
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
