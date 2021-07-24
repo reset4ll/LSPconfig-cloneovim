@@ -65,6 +65,19 @@ end
 
 return M
 ```
+### Customizing how diagnostics are displayed
+
+See `:help on_publish_diagnostics` for more advanced customization options. The following show how to override the default settings (the overrides are the defaults):
+
+```lua
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+})
+```
+
 ### Change diagnostic symbols in the sign column (gutter)
 ```lua
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
