@@ -121,7 +121,7 @@ vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
 -- You will likely want to reduce updatetime which affects CursorHold
 -- note: this setting is global and should be set only once
 vim.o.updatetime = 250
-autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 ```
 
 ### Filter by severity in signcolum
