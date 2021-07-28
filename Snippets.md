@@ -1,4 +1,4 @@
-Snippet support can be easily added to your config by installing an autocompletion plugin (such as [compe](https://github.com/hrsh7th/nvim-compe/)) and a snippets plugins (such as [LuaSnip](https://github.com/L3MON4D3/LuaSnip):
+Snippet support can be easily added to your config by installing an autocompletion plugin (such as [compe](https://github.com/hrsh7th/nvim-compe/)) and a snippets plugins (such as [LuaSnip](https://github.com/L3MON4D3/LuaSnip)):
 
 To enable snippets support for a given server with LuaSnip, the main steps are to:
 * override the capabilities we send to a language server to let it know we support snippets
