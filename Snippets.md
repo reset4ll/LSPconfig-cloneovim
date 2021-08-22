@@ -5,6 +5,67 @@ To enable snippets support for a given server with LuaSnip, the main steps are t
 * set up your snippets source, and the autocompletion plugin to acknowledge the snippets source
 * map the confirm and expand snippets keybinds.
 
+### nvim-cmp and luasnip
+
+```lua
+local use = require('packer').use
+require('packer').startup(function()
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+end)
+
+-- luasnip setup
+local luasnip = require 'luasnip'
+
+-- nvim-cmp setup
+local cmp = require 'cmp'
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.prev_item(),
+    ['<C-n>'] = cmp.mapping.next_item(),
+    ['<C-d>'] = cmp.mapping.scroll(-4),
+    ['<C-f>'] = cmp.mapping.scroll(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = cmp.mapping.mode({ 'i', 's' }, function(_, fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+      elseif luasnip.expand_or_jumpable() then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+      else
+        fallback()
+      end
+    end),
+    ['<S-Tab>'] = cmp.mapping.mode({ 'i', 's' }, function(_, fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      elseif luasnip.jumpable(-1) then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+      else
+        fallback()
+      end
+    end),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+}
+```
+
+### nvim-compe and luasnip
 Here is a complete example for compe and LuaSnip:
 
 ```lua
