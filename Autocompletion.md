@@ -1,7 +1,71 @@
-Neovim does not support built-in autocompletion. As mentioned in the readme, you can bind the completion results to omnifunc for on-demand completion. To use autocompletion, please use an external plugin. We recommend [nvim-compe](https://github.com/hrsh7th/nvim-compe).
+# Autocompletion (not built-in) vs. completion (built-in)
+Neovim does not support built-in autocompletion. As mentioned in the readme, you can bind the completion results to omnifunc for on-demand completion. To use autocompletion, please use an external plugin. We recommend [nvim-cmp](https://github.com/hrsh7th/nvim-cmp/), the successor/rewrite of [nvim-compe](https://github.com/hrsh7th/nvim-compe).
 
 Please note, **autocompletion is expensive**. In order to provide completion, text must be synchronized on each completion request, and autocompletion plugins often send multiple completion requests per second to the language server as you type. If you notice slowdowns, the most likely candidate is your autocompletion plugin, or the language server which is bottlenecking it.
 
+## nvim-cmp
+
+For installing nvim-cmp, with autocompletion support for snippets/LSP, you can follow the below snippet. Note, this does not include your server configuration:
+
+```lua
+local use = require('packer').use
+require('packer').startup(function()
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+end)
+
+-- luasnip setup
+local luasnip = require 'luasnip'
+
+-- nvim-cmp setup
+local cmp = require 'cmp'
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.prev_item(),
+    ['<C-n>'] = cmp.mapping.next_item(),
+    ['<C-d>'] = cmp.mapping.scroll(-4),
+    ['<C-f>'] = cmp.mapping.scroll(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = cmp.mapping.mode({ 'i', 's' }, function(_, fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+      elseif luasnip.expand_or_jumpable() then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+      else
+        fallback()
+      end
+    end),
+    ['<S-Tab>'] = cmp.mapping.mode({ 'i', 's' }, function(_, fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      elseif luasnip.jumpable(-1) then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+      else
+        fallback()
+      end
+    end),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
+}
+```
+
+## nvim-compe (legacy)
 After installing compe, add the following to your init.vim:
 
 ```lua
@@ -72,14 +136,10 @@ EOF
 ```
 
 
-# Auto-import
+## Auto-import (nvim-compe/nvim-cmp)
 
-The important line to have in your config which triggers the import on completion is:
-```lua
-vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
-```
+The above snippets both map the necessary confirm on enter mapping to use auto-import. An example to show how this works:
 
-To reproduce
 1. Make sure tsserver is installed according to the lspconfig wiki, and if you want, use our [autocompletion example init.lua](https://github.com/mjlbach/defaults.nvim/blob/master/init.lua).
 2. `mkdir test && cd test && npm init`
 3. Follow the prompts to create a project
