@@ -1,4 +1,10 @@
-The principal way of enabling a language server with lspconfig is the `setup {}` call. The main keys users will typically pass into `setup` are `settings` `on_init`, and `on_attach`.
+The principal way of enabling a language server with lspconfig is the `setup {}` call. Setup has two primary functions:
+* Pass configuration options that are cached for a given language server (overriding the defaults)
+* Watch for buffers of a filetype that match a configured language server, launch, and attach a language server to said buffer (using a FileType autocommand)
+
+`setup` should only be invoked once per language server.
+
+The main keys users will typically pass into `setup` are `settings` `on_init`, and `on_attach`.
 
 ### settings
 
