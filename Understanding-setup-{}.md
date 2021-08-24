@@ -31,7 +31,7 @@ require('lspconfig').pyright.setup {
 
 ### on_attach
 
-The purpose of the on_attach callback is to run a lua callback after the language server succesfully attaches to a given buffer. This lets you conditionally map keybindings, enable autocompletion, set buffer options, etc. based on whether or not the language server is active in your buffer. Users typically use this to map keybindings to the client as seen in the [example keybindings](https://github.com/neovim/nvim-lspconfig#keybindings-and-completion) in the readme.
+The purpose of the on_attach callback is to run a lua callback after the language server successfully attaches to a given buffer. This lets you conditionally map keybindings, enable autocompletion, set buffer options, etc. based on whether or not the language server is active in your buffer. Users typically use this to map keybindings to the client as seen in the [example keybindings](https://github.com/neovim/nvim-lspconfig#keybindings-and-completion) in the readme.
 
 
 
