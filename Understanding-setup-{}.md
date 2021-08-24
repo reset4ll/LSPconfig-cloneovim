@@ -2,9 +2,14 @@ The principal way of enabling a language server with lspconfig is the `setup {}`
 * Pass configuration options that are cached for a given language server (overriding the defaults)
 * Watch for buffers of a filetype that match a configured language server, launch, and attach a language server to said buffer (using a FileType autocommand)
 
-`setup` should only be invoked once per language server.
+`setup` should only be invoked once per language server. It takes the same `{config}` table as `:help vim.lsp.start_client()`, as it's main role is to cache and pass this table to `start_client()`. In addition to the keys shared with `start_client`, it takes the following keys:
+* `root_dir`
+* `name`
+* `filetypes`
+* `autostart`
+* `on_new_config`
 
-The main keys users will typically pass into `setup` are `settings` `on_init`, and `on_attach`.
+The main keys users will (optionally) pass into `setup` to override the defaults are `settings` `on_init`, and `on_attach`.
 
 ### settings
 
@@ -24,6 +29,9 @@ require('lspconfig').pyright.setup {
 }
 ```
 
+### on_attach
+
+The purpose of the on_attach callback is to run a lua callback after the language server succesfully attaches to a given buffer. This lets you conditionally map keybindings, enable autocompletion, set buffer options, etc. based on whether or not the language server is active in your buffer. Users typically use this to map keybindings to the client as seen in the [example keybindings](https://github.com/neovim/nvim-lspconfig#keybindings-and-completion) in the readme.
 
 
 
