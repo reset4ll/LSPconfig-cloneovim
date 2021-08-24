@@ -13,7 +13,7 @@ The main keys users will (optionally) pass into `setup` to override the defaults
 
 ### settings
 
-The `settings` table is sent to the language server via a `workspace/didChangeConfiguration`notification from the client. `lspconfig` sends this notification for you automatically during initialization of the language server using the cached `settings` table you pass to `setup{}`.
+The `settings` table is sent to the language server via a [workspace/didChangeConfiguration notification](https://microsoft.github.io/language-server-protocol/specification#workspace_didChangeConfiguration) from the client. `lspconfig` sends this notification for you automatically during initialization of the language server using the cached `settings` table you pass to `setup{}`.
 
 In most cases, the default settings are correct. If you would like to override the settings you can see available options in [CONFIG.md](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md), these are auto-generated from the `package.json` used by the vscode plugin leveraging the language server, if available. These are the corresponding entries of the nested settings table that you must put in settings to override that option).
 
@@ -28,6 +28,9 @@ require('lspconfig').pyright.setup {
   },
 }
 ```
+
+### init_options
+`init_options` corresponds to `initializationOptions` in the [initialize request](https://microsoft.github.io/language-server-protocol/specification#initialize). These options may overlap with `settings` depending on the server, and less frequently need to be configured by the user.
 
 ### on_attach
 
