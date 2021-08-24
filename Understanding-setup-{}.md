@@ -9,7 +9,7 @@ The principal way of enabling a language server with lspconfig is the `setup {}`
 * `autostart`
 * `on_new_config`
 
-The main keys users will (optionally) pass into `setup` to override the defaults are `settings` `on_init`, and `on_attach`.
+The main keys users will (optionally) pass into `setup` to override the defaults are `settings` `init_options`, and `on_attach`.
 
 ### settings
 
