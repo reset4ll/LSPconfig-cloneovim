@@ -20,10 +20,8 @@ end)
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
-
 -- luasnip setup
 local luasnip = require 'luasnip'
-
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
