@@ -44,6 +44,9 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
+
 -- luasnip setup
 local luasnip = require 'luasnip'
 
@@ -66,7 +69,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<Tab>'] = function(fallback)
       if vim.fn.pumvisible() == 1 then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
       elseif luasnip.expand_or_jumpable() then
@@ -74,8 +77,8 @@ cmp.setup {
       else
         fallback()
       end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    end,
+    ['<S-Tab>'] = function(fallback)
       if vim.fn.pumvisible() == 1 then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
       elseif luasnip.jumpable(-1) then
@@ -83,7 +86,7 @@ cmp.setup {
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end,
   },
   sources = {
     { name = 'nvim_lsp' },
