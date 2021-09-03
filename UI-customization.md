@@ -162,3 +162,59 @@ end
 
 vim.lsp.handlers["textDocument/definition"] = goto_definition('split')
 ```
+
+### Show source in diagnostics
+
+This is useful if you're running multiple language servers.
+
+**Result:**
+- Virtual Text
+```typescript
+const foo = "bar;    ■ eslint: Parsing error: Unterminated string constant
+asdf + 2    ■ typescript: Cannot find name 'asdf'
+```
+- Floating Window
+```
+1. typescript: Unterminated string literal.
+2. eslint: Parsing error: Unterminated string constant
+```
+
+**Code:**
+```lua
+-- your config
+local config = {
+  underline = true,
+  virtual_text = {
+    prefix = "■ ",
+    spacing = 4,
+  },
+  signs = true,
+  update_in_insert = false,
+}
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  function(_, _, params, client_id, _)
+    local uri = params.uri
+    local bufnr = vim.uri_to_bufnr(uri)
+
+    if not bufnr then
+      return
+    end
+
+    local diagnostics = params.diagnostics
+
+    vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
+
+    if not vim.api.nvim_buf_is_loaded(bufnr) then
+      return
+    end
+
+    -- don't mutate the original diagnostic because it would interfere with
+    -- code action (and probably other stuff, too)
+    local prefixed_diagnostics = vim.deepcopy(diagnostics)
+    for i, v in pairs(diagnostics) do
+      prefixed_diagnostics[i].message = string.format("%s: %s", v.source, v.message)
+    end
+    vim.lsp.diagnostic.display(prefixed_diagnostics, bufnr, client_id, config)
+  end
+```
