@@ -173,11 +173,6 @@ This is useful if you're running multiple language servers.
 const foo = "bar;    ■ eslint: Parsing error: Unterminated string constant
 asdf + 2    ■ typescript: Cannot find name 'asdf'
 ```
-- Floating Window
-```
-1. typescript: Unterminated string literal.
-2. eslint: Parsing error: Unterminated string constant
-```
 
 **Code:**
 ```lua
