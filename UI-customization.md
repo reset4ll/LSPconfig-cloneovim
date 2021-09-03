@@ -181,19 +181,8 @@ asdf + 2    ■ typescript: Cannot find name 'asdf'
 
 **Code:**
 ```lua
--- your config
-local config = {
-  underline = true,
-  virtual_text = {
-    prefix = "■ ",
-    spacing = 4,
-  },
-  signs = true,
-  update_in_insert = false,
-}
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  function(_, _, params, client_id, _)
+  function(_, _, params, client_id, _, config)
     local uri = params.uri
     local bufnr = vim.uri_to_bufnr(uri)
 
