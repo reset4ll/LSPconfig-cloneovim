@@ -164,22 +164,22 @@ end
 vim.lsp.handlers["textDocument/definition"] = goto_definition('split')
 ```
 
-### Show source in diagnostics
+### Show source in diagnostics (neovim 0.5.1/0.6+ only)
 
-This is useful if you're running multiple language servers.
+This can be useful if you are running multiple language servers on the same buffer, for example:
 
-**Result:**
-- Virtual Text
 ```typescript
 const foo = "bar;    ■ eslint: Parsing error: Unterminated string constant
 asdf + 2    ■ typescript: Cannot find name 'asdf'
 ```
 
-**Code:**
+This requires overriding the `publishDiagnostics` handler:
+
 ```lua
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  function(_, _, params, client_id, _, config)
+  function(_, params, ctx, config)
     local uri = params.uri
+    local client_id = client_id
     local bufnr = vim.uri_to_bufnr(uri)
 
     if not bufnr then
