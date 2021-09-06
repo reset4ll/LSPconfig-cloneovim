@@ -179,7 +179,7 @@ This requires overriding the `publishDiagnostics` handler:
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   function(_, params, ctx, config)
     local uri = params.uri
-    local client_id = client_id
+    local client_id = ctx.client_id
     local bufnr = vim.uri_to_bufnr(uri)
 
     if not bufnr then
