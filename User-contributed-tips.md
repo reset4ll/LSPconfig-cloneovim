@@ -28,7 +28,7 @@ See https://github.com/neovim/neovim/issues/14680 for context.
 To open the target of a `textDocument/definition` request in a floating window (as in VS Code's "Peek Definition"), you can use the following snippet:
 
 ```lua
-local function preview_location_callback(_, _, result)
+local function preview_location_callback(_, result)
   if result == nil or vim.tbl_isempty(result) then
     return nil
   end
