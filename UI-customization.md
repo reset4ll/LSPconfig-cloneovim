@@ -82,7 +82,7 @@ Note: **With the default settings, you will not see updated diagnostics until yo
 
 ### Change diagnostic symbols in the sign column (gutter)
 ```lua
-local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
