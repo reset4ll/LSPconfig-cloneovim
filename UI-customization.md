@@ -167,5 +167,9 @@ vim.lsp.handlers["textDocument/definition"] = goto_definition('split')
 ### Show source in diagnostics (neovim 0.6+ only)
 
 ```lua
-vim.diagnostic.config({show_source="always"})
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = {
+    source = "always",  -- Or "if_many"
+  }
+})
 ```
