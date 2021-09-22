@@ -166,6 +166,6 @@ vim.lsp.handlers["textDocument/definition"] = goto_definition('split')
 
 ### Show source in diagnostics (neovim 0.6+ only)
 
-```
+```lua
 vim.diagnostic.config({show_source="always"})
 ```
