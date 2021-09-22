@@ -166,40 +166,6 @@ vim.lsp.handlers["textDocument/definition"] = goto_definition('split')
 
 ### Show source in diagnostics (neovim 0.5.1/0.6+ only)
 
-This can be useful if you are running multiple language servers on the same buffer, for example:
-
-```typescript
-const foo = "bar;    ■ eslint: Parsing error: Unterminated string constant
-asdf + 2    ■ typescript: Cannot find name 'asdf'
 ```
-
-This requires overriding the `publishDiagnostics` handler:
-
-```lua
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  function(_, params, ctx, config)
-    local uri = params.uri
-    local client_id = ctx.client_id
-    local bufnr = vim.uri_to_bufnr(uri)
-
-    if not bufnr then
-      return
-    end
-
-    local diagnostics = params.diagnostics
-
-    vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
-
-    if not vim.api.nvim_buf_is_loaded(bufnr) then
-      return
-    end
-
-    -- don't mutate the original diagnostic because it would interfere with
-    -- code action (and probably other stuff, too)
-    local prefixed_diagnostics = vim.deepcopy(diagnostics)
-    for i, v in pairs(diagnostics) do
-      prefixed_diagnostics[i].message = string.format("%s: %s", v.source, v.message)
-    end
-    vim.lsp.diagnostic.display(prefixed_diagnostics, bufnr, client_id, config)
-  end
+vim.diagnostic.config({show_source="always"})
 ```
