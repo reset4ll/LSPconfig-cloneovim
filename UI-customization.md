@@ -135,9 +135,9 @@ local function goto_definition(split_cmd)
   local api = vim.api
 
   -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
-  local handler = function(_, result, {method=method})
+  local handler = function(_, result, ctx)
     if result == nil or vim.tbl_isempty(result) then
-      local _ = log.info() and log.info(method, "No location found")
+      local _ = log.info() and log.info(ctx.method, "No location found")
       return nil
     end
 
