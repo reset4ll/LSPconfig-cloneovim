@@ -173,3 +173,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   }
 })
 ```
+
+### Change prefix/character preceding the diagnostics virtual text (■)
+
+```lua
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = {
+    prefix = '■', -- Could be '●', '▎', 'x'
+  }
+})
+```
