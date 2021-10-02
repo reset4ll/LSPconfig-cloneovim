@@ -52,13 +52,18 @@ nvim-lspconfig offers the ClangdSwitchSourceHeader command by default. It simply
 
 ```lua
 local function switch_source_header_splitcmd(bufnr, splitcmd)
-    bufnr = require'lspconfig'.util.validate_bufnr(bufnr)
-    local params = { uri = vim.uri_from_bufnr(bufnr) }
-    vim.lsp.buf_request(bufnr, 'textDocument/switchSourceHeader', params, function(err, _, result)
-        if err then error(tostring(err)) end
-        if not result then print ("Corresponding file can’t be determined") return end
-        vim.api.nvim_command(splitcmd..' '..vim.uri_to_fname(result))
-    end)
+	bufnr = nvim_lspconfig.util.validate_bufnr(bufnr)
+	local params = { uri = vim.uri_from_bufnr(bufnr) }
+	vim.lsp.buf_request(
+		bufnr,
+		'textDocument/switchSourceHeader',
+		params,
+		nvim_lspconfig.util.compat_handler(function(err, result)
+			if err then error(tostring(err)) end
+			if not result then print ("Corresponding file can’t be determined") return end
+			vim.api.nvim_command(splitcmd..' '..vim.uri_to_fname(result))
+		end)
+	)
 end
 
 require'lspconfig'.clangd.setup {
