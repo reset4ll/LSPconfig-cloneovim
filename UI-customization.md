@@ -174,7 +174,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 ```
 
-### Change prefix/character preceding the diagnostics virtual text (■)
+### Change prefix/character preceding the diagnostics' virtual text
+By default, this character is a square icon (■).
 
 ```lua
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -182,4 +183,20 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     prefix = '■', -- Could be '●', '▎', 'x'
   }
 })
+```
+
+### Highlight line number instead of having icons in sign column
+
+```lua
+vim.cmd [[
+  highlight LspDiagnosticsLineNrError guibg=#51202A guifg=#FF0000 gui=bold
+  highlight LspDiagnosticsLineNrWarning guibg=#51412A guifg=#FFA500 gui=bold
+  highlight LspDiagnosticsLineNrInformation guibg=#1E535D guifg=#00FFFF gui=bold
+  highlight LspDiagnosticsLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
+
+  sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=LspDiagnosticsLineNrError
+  sign define LspDiagnosticsSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsLineNrWarning
+  sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsLineNrInformation
+  sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=LspDiagnosticsLineNrHint
+]]
 ```
