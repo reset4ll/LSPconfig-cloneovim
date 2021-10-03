@@ -187,6 +187,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 ### Highlight line number instead of having icons in sign column
 
+See the properties of the signs with `sign list`.
+
 ```lua
 vim.cmd [[
   highlight LspDiagnosticsLineNrError guibg=#51202A guifg=#FF0000 gui=bold
@@ -195,8 +197,8 @@ vim.cmd [[
   highlight LspDiagnosticsLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
 
   sign define DiagnosticSignError text= texthl=LspDiagnosticsSignError linehl= numhl=LspDiagnosticsLineNrError
-  sign define DiagnosticSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsLineNrWarning
-  sign define DiagnosticSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsLineNrInformation
+  sign define DiagnosticSignWarn text= texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsLineNrWarning
+  sign define DiagnosticSignInfo text= texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsLineNrInformation
   sign define DiagnosticSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=LspDiagnosticsLineNrHint
 ]]
 ```
