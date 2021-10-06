@@ -20,7 +20,7 @@ All clients are terrific and have amazing communities of contributors.
 * It's built into neovim
 * Lua is a nice language to work in
 * LuaJIT is an extremely fast tracing interpreter
-* The client leverages libuv's event loop for fast asynchronous communication
+* The client leverages libuv's event loop for fast asynchronous communication and an extremely fast json parser
 * You can mix and match snippets, auto-pairs, and auto-completion plugins
 * There are no dependencies for running the built-in client
   * many servers are written in javasript and will require node.js
