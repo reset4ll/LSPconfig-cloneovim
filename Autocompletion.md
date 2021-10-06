@@ -1,7 +1,7 @@
 # Autocompletion (not built-in) vs. completion (built-in)
 Neovim does not support built-in autocompletion. As mentioned in the readme, you can bind the completion results to omnifunc for on-demand completion. To use autocompletion, please use an external plugin. We recommend [nvim-cmp](https://github.com/hrsh7th/nvim-cmp/), the successor/rewrite of [nvim-compe](https://github.com/hrsh7th/nvim-compe).
 
-Please note, **autocompletion is expensive**. In order to provide completion, text must be synchronized on each completion request, and autocompletion plugins often send multiple completion requests per second to the language server as you type. If you notice slowdowns, the most likely candidate is your autocompletion plugin, or the language server which is bottlenecking it.
+Please note, in order to provide completion, text must be synchronized on each completion request. If you notice slowdowns, the most likely candidate is a slow language server bottlenecking your autocompletion plugin.
 
 ## nvim-cmp
 
