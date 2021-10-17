@@ -4,7 +4,7 @@ The built-in language server client implements the language server protocol as t
 
 Client-side functionality such as auto-completion and auto-pairs are not part of the LSP specification, and are not built into neovim. Snippets are provided by certain language servers, and the built-in omnifunc has primitive snippet support. These are generic client capabilities that are broader than the language server protocol, but often can use language servers as an additional source. The following plugins provide good integration with the built-in client:
 
-* [nvim-compe](https://github.com/hrsh7th/nvim-compe): auto-completion
+* [nvim-cmp](https://github.com/hrsh7th/nvim-cmp): auto-completion
 * [LuaSnip](https://github.com/L3MON4D3/LuaSnip): snippets support
 * [nvim-autopairs](https://github.com/windwp/nvim-autopairs): auto-pairs
 
