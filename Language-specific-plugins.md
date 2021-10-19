@@ -7,3 +7,4 @@ Some servers send requests outside of the language server protocol specification
 * [flutter-tools.nvim](https://github.com/akinsho/flutter-tools.nvim) ([Flutter](https://flutter.dev/))
 * [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim/) (Rust's [rust-analyzer](https://rust-analyzer.github.io/))
 * [lean.nvim](https://github.com/Julian/lean.nvim) ([Lean](https://leanprover.github.io/))
+* [grammar-guard.nvim](https://github.com/brymer-meneses/grammar-guard.nvim) (ltex-ls)
