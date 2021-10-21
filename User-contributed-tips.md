@@ -286,7 +286,7 @@ vim.lsp.diagnostic.set_signs = set_signs_limited
 
 The [SchemaStore](https://github.com/SchemaStore/schemastore) project provides a large collection of [JSON schema](https://json-schema.org/) definitions for many common JSON file types. The [SchemaStore.nvim](https://github.com/b0o/schemastore.nvim) plugin provides access to the SchemaStore catalog as a Lua library that can be used to configure jsonls.
 
-To use the entire SchemaStore catalog with jsonls:
+To use the entire SchemaStore catalog with jsonls, install the [SchemaStore.nvim](https://github.com/b0o/schemastore.nvim) plugin, then update your lspconfig jsonls settings:
 
 ```lua
 require'lspconfig'.jsonls.setup {
