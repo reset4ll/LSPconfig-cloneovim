@@ -279,3 +279,62 @@ vim.lsp.diagnostic.set_signs = set_signs_limited
 ```
 
 [source](https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics_be_limited_to_show_a/gvd8rb9/?utm_source=reddit&utm_medium=web2x&context=3)
+
+# jsonls
+
+## Use JSON schemas from SchemaStore
+
+The [SchemaStore](https://github.com/SchemaStore/schemastore) project provides a large collection of [JSON schema](https://json-schema.org/) definitions for many common JSON file types. The [SchemaStore.nvim](https://github.com/b0o/schemastore.nvim) plugin provides access to the SchemaStore catalog as a Lua library that can be used to configure jsonls.
+
+To use the entire SchemaStore catalog with jsonls:
+
+```lua
+require'lspconfig'.jsonls.setup {
+  settings = {
+    json = {
+      schemas = require'schemastore'.json.schemas(),
+    },
+  },
+}
+```
+
+To use a subset of the catalog, you can select them by name (see [the catalog](https://github.com/SchemaStore/schemastore/blob/master/src/api/json/catalog.json) for a full list):
+
+```lua
+require'lspconfig'.jsonls.setup {
+  settings = {
+    json = {
+      schemas = require'schemastore'.json.schemas {
+        select = {
+          '.eslintrc',
+          'package.json',
+        },
+      },
+    },
+  },
+}
+```
+
+If you want to use your own schemas in addition to schemas from SchemaStore, you can merge them:
+
+```lua
+require'lspconfig'.jsonls.setup {
+  settings = {
+    json = {
+      schemas = vim.tbl_extend('force', {
+        {
+           description = "My Custom JSON schema",
+           fileMatch = { "foobar.json", ".foobar.json" },
+           name = "foobar.json",
+           url = "https://example.com/schema/foobar.json"
+         },
+      }, require'schemastore'.json.schemas {
+        select = {
+          '.eslintrc',
+          'package.json',
+        },
+      },
+    },
+  },
+}
+```
