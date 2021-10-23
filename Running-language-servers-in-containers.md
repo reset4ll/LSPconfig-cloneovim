@@ -77,3 +77,11 @@ in addition to anything else you've already setup, like a custom `on_attach` fun
 * If you have a project that is setup in such a way that header files aren't installed to their standard locations on your system, each binary requires customized linking, etc. I'd highly recommend playing around with either [compiledb](https://pypi.org/project/compiledb/) or [Bear](https://github.com/rizsotto/Bear). Both of these will generate `compile_commands.json` files, which are already recognized by the default `clangd` configuration in this repo.
 * You can edit the `cclangd` script to redirect `STDERR` to a file if you are interested in debugging things, just change `... 2>/dev/null` to whatever filepath you like; `... 2>/tmp/clangd.log`, etc.
 * The builtin client and the handling in this repo. do a great job of handling root paths and whatnot, but you might have to play around with the `-w` option of [docker exec](https://docs.docker.com/engine/reference/commandline/exec/) depending on how your project is setup.
+
+## `microsoft/vscode-languageserver-node` based servers
+
+The `vscode-languageserver-node` based server expects a client to create it. The server expects the client  to supply a process id (the process id of the client). When the server cannot detect the process id, it assumes the client has exited and that it should exit. Since containers do not share process ids with the host this results in the server exiting immediately. See [here](https://github.com/microsoft/vscode-languageserver-node/issues/364#issuecomment-431385118)
+
+A way to handle this is using `before_init` and overriding `initialize_params.process_id` with a NIL (null) value as described [here](https://github.com/neovim/neovim/issues/14504#issuecomment-833940045)
+
+A less ideal way to deal with this is to have the host and container share process ids via the docker/podman run argument `--pid=host` as mentioned [here](https://github.com/neovim/neovim/issues/14504#issuecomment-833930180). *Do note this is considered an insecure practice by both Docker and Podman*. `man docker-run` or `man podman-run` and `/--pid=` for more info.
