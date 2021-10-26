@@ -298,7 +298,7 @@ require'lspconfig'.jsonls.setup {
 }
 ```
 
-To use a subset of the catalog, you can select them by name (see [the catalog](https://github.com/SchemaStore/schemastore/blob/master/src/api/json/catalog.json) for a full list):
+To use a subset of the catalog, you can select schemas by name (see [the catalog](https://github.com/SchemaStore/schemastore/blob/master/src/api/json/catalog.json) for a full list):
 
 ```lua
 require'lspconfig'.jsonls.setup {
