@@ -26,7 +26,7 @@ require('lspconfig').pyright.setup()
 
 ### Do I need lspconfig to use neovim's LSP?
 
-You can use the built-in language server client *without* nvim-lspconfig, you'll just have to write out the server configuration and start/attach clients to buffers manually (see `:help lsp`).
+You can use the built-in language server client *without* nvim-lspconfig, you'll just have to write out the server configuration and start/attach clients to buffers manually (see above or `:help lsp`).
 
 ### Why do I have to install nvim-jdtls/nvim-metals if I have nvim-lspconfig installed already? (or vice versa)
 
