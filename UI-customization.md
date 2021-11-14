@@ -91,7 +91,18 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 
 Note: **With the default settings, you will not see updated diagnostics until you leave insert mode. Set `update_in_insert = true` if you want diagnostics to update while in insert mode**.
 
-### Change diagnostic symbols in the sign column (gutter)
+### Change diagnostic symbols in the sign column (gutter) 
+
+## Neovim 0.5.1
+```lua
+local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+for type, icon in pairs(signs) do
+    local hl = "LspDiagnosticsSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+```
+
+## Neovim 0.6.0
 ```lua
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
@@ -134,6 +145,12 @@ vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
 vim.o.updatetime = 250
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
 ```
+
+For diagnostics for specific cursor position (Neovim 0.6+)
+```lua 
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_position_diagnostics({focusable=false})]]
+```
+
 
 ### Filter by severity in signcolum
 See https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics_be_limited_to_show_a/
