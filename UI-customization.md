@@ -93,7 +93,7 @@ Note: **With the default settings, you will not see updated diagnostics until yo
 
 ### Change diagnostic symbols in the sign column (gutter) 
 
-## Neovim 0.5.1
+#### Neovim 0.5.1
 ```lua
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 for type, icon in pairs(signs) do
@@ -102,7 +102,7 @@ for type, icon in pairs(signs) do
 end
 ```
 
-## Neovim 0.6.0
+#### Neovim 0.6.0
 ```lua
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
