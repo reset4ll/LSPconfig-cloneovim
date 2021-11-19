@@ -1,0 +1,1 @@
+[Divinerの博客](https://www.diviner.site)
