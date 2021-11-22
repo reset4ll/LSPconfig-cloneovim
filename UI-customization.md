@@ -112,7 +112,7 @@ for type, icon in pairs(signs) do
 end
 ```
 
-### Print diagnostics in status line
+### Print diagnostics to message area
 
 ```lua
 function PrintDiagnostics(opts, bufnr, line_nr, client_id)
