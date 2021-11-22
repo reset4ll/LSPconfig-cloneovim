@@ -225,8 +225,8 @@ vim.cmd [[
   highlight LspDiagnosticsLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
 
   sign define DiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=LspDiagnosticsLineNrError
-  sign define DiagnosticsSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsLineNrWarning
-  sign define DiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsLineNrInformation
+  sign define DiagnosticsSignWarn text= texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsLineNrWarning
+  sign define DiagnosticsSignInfo text= texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsLineNrInformation
   sign define DiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=LspDiagnosticsLineNrHint
 ]]
 ```
