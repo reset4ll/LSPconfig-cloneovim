@@ -105,7 +105,6 @@ end
 #### Neovim 0.6.0
 ```lua
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -148,7 +147,7 @@ vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diag
 
 For diagnostics for specific cursor position (Neovim 0.6+)
 ```lua 
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_position_diagnostics({focusable=false})]]
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(0,{focusable=false,scope="cursor"})]]
 ```
 
 
