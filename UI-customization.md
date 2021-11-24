@@ -147,7 +147,7 @@ vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diag
 
 For diagnostics for specific cursor position (Neovim 0.6+)
 ```lua 
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(0,{focusable=false,scope="cursor"})]]
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil,{focusable=false,scope="cursor"})]]
 ```
 
 
