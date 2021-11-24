@@ -89,6 +89,18 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 })
 ```
 
+#### Neovim 0.6.0
+You can configure diagnostic options globally. See `:help vim.diagnostic.config` for more advanced customization options.
+```lua
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
+})
+```
+
 Note: **With the default settings, you will not see updated diagnostics until you leave insert mode. Set `update_in_insert = true` if you want diagnostics to update while in insert mode**.
 
 ### Change diagnostic symbols in the sign column (gutter) 
