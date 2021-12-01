@@ -80,18 +80,6 @@ return M
 ```
 ### Customizing how diagnostics are displayed
 
-See `:help on_publish_diagnostics` for more advanced customization options. The following show how to override the default settings (the overrides are the defaults):
-
-```lua
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = true,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-})
-```
-
-#### Neovim 0.6.0
 You can configure diagnostic options globally. See `:help vim.diagnostic.config` for more advanced customization options.
 ```lua
 vim.diagnostic.config({
@@ -107,16 +95,6 @@ Note: **With the default settings, you will not see updated diagnostics until yo
 
 ### Change diagnostic symbols in the sign column (gutter) 
 
-#### Neovim 0.5.1
-```lua
-local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
-for type, icon in pairs(signs) do
-    local hl = "LspDiagnosticsSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-```
-
-#### Neovim 0.6.0
 ```lua
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -161,7 +139,7 @@ vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diag
 
 For diagnostics for specific cursor position (Neovim 0.6+)
 ```lua 
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil,{focusable=false,scope="cursor"})]]
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus =false, scope="cursor"})]]
 ```
 
 
