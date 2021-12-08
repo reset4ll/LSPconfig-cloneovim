@@ -183,13 +183,16 @@ end
 vim.lsp.handlers["textDocument/definition"] = goto_definition('split')
 ```
 
-### Show source in diagnostics (neovim 0.6+ only)
+### Show source in diagnostics
 
 ```lua
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.diagnostic.config({
   virtual_text = {
     source = "always",  -- Or "if_many"
-  }
+  },
+  float = {
+    source = "always",  -- Or "if_many"
+  },
 })
 ```
 
