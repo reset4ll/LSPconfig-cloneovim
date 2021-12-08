@@ -224,7 +224,9 @@ vim.cmd [[
 
 ### Highlight symbol under cursor
 
+Add the following to your on_attach (this allows checking server capabilities to avoid calling invalid commands.
 ```lua
+if client.resolved_capabilities.document_highlight then
     vim.cmd [[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
       hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
@@ -235,4 +237,5 @@ vim.cmd [[
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]]
+end
 ```
