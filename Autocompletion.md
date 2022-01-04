@@ -5,7 +5,7 @@ Please note, in order to provide completion, text must be synchronized on each c
 
 ## nvim-cmp
 
-For installing nvim-cmp, with autocompletion support for snippets/LSP, you can follow the below snippet. Note, this does not include your server configuration. If you are using `nvim-cmp` *do not use the built-in omnifunc* as it cannot support the additional completion items returned from servers due to the capabilities enabled by nvim-cmp.
+For installing nvim-cmp, with autocompletion support for snippets/LSP, you can follow the below snippet. Note, this does not include your server configuration. If you are using `nvim-cmp` **do not use neovim's built-in omnifunc** as it cannot support the additional completion items returned from servers due to the capabilities enabled by nvim-cmp.
 
 ```lua
 local use = require('packer').use
