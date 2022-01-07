@@ -42,7 +42,12 @@ cmp.setup {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
     end,
-  },
+  },call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \   'matchers': ['matcher_head'],
+      \   'sorters': ['sorter_rank']},
+      \ })
+
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -121,4 +126,53 @@ for _, lsp in ipairs(servers) do
     -- on_attach = my_custom_on_attach,
   }))
 end
+```
+
+## ddc.vim
+
+Note: `ddc.vim` requires deno to be available on PATH.
+ 
+```lua
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+end
+
+local use = require('packer').use
+require('packer').startup(function()
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'vim-denops/denops.vim'
+  use 'Shougo/ddc.vim'
+  use 'Shougo/ddc-nvim-lsp'
+  use 'Shougo/ddc-matcher_head'
+  use 'Shougo/ddc-sorter_rank'
+end)
+
+local lspconfig = require('lspconfig')
+
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup{
+    -- on_attach = my_custom_on_attach,
+  }
+end
+
+vim.cmd [[ 
+  call ddc#custom#patch_global('sourceOptions', {
+        \ '_': {
+        \   'matchers': ['matcher_head'],
+        \   'sorters': ['sorter_rank']},
+        \ })
+
+  call ddc#custom#patch_global('sources', ['nvim-lsp'])
+  call ddc#custom#patch_global('sourceOptions', {
+        \ 'nvim-lsp': {
+        \   'mark': 'lsp',
+        \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
+        \ })
+  
+  call ddc#enable()
+]]
 ```
