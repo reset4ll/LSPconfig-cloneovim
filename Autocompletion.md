@@ -80,7 +80,7 @@ cmp.setup {
 }
 ```
 
-## Auto-import
+### Auto-import
 
 The above snippet maps the necessary confirm on enter mapping to use auto-import. An example to show how this works:
 
@@ -98,11 +98,15 @@ Note: This currently does not work with typescript server (theia) on Windows due
 
 ### coq_nvim
 
+coq_nvim requires wrapping the config table passed to `setup {}`. See the example below:
+
 ```lua
 local use = require('packer').use
 require('packer').startup(function()
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
   use 'ms-jpq/coq_nvim'
+  use 'ms-jpq/coq.artifacts'
+  use 'ms-jpq/coq.thirdparty'
 end)
 
 local lspconfig = require('lspconfig')
