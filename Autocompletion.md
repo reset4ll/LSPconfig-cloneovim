@@ -103,6 +103,8 @@ Note: This currently does not work with typescript server (theia) on Windows due
 
 ## coq_nvim
 
+Note: coq_nvim requires Python 3.8.2 or above with `venv` package, and SQLite.
+
 coq_nvim requires wrapping the config table passed to `setup {}`. See the example below:
 
 ```lua
