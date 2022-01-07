@@ -96,7 +96,7 @@ The above snippet maps the necessary confirm on enter mapping to use auto-import
 
 Note: This currently does not work with typescript server (theia) on Windows due to an upstream bug in theia, see https://github.com/theia-ide/typescript-language-server/issues/135
 
-### coq_nvim
+## coq_nvim
 
 coq_nvim requires wrapping the config table passed to `setup {}`. See the example below:
 
