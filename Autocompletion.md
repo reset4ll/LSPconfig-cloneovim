@@ -95,3 +95,23 @@ The above snippet maps the necessary confirm on enter mapping to use auto-import
 8. type `debounce` on line 2 and hit `enter` (`<CR>`)
 
 Note: This currently does not work with typescript server (theia) on Windows due to an upstream bug in theia, see https://github.com/theia-ide/typescript-language-server/issues/135
+
+### coq_nvim
+
+```lua
+local use = require('packer').use
+require('packer').startup(function()
+  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'ms-jpq/coq_nvim'
+end)
+
+local lspconfig = require('lspconfig')
+
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup(require('coq').lsp_ensure_capabilities({
+    -- on_attach = my_custom_on_attach,
+  }))
+end
+```
