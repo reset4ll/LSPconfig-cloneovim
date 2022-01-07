@@ -111,6 +111,9 @@ end)
 
 local lspconfig = require('lspconfig')
 
+-- Automatically start coq
+vim.g.coq_settings = { auto_start = true }
+
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
 for _, lsp in ipairs(servers) do
