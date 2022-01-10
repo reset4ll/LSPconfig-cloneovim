@@ -42,12 +42,7 @@ cmp.setup {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
     end,
-  },call ddc#custom#patch_global('sourceOptions', {
-      \ '_': {
-      \   'matchers': ['matcher_head'],
-      \   'sorters': ['sorter_rank']},
-      \ })
-
+  },
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
