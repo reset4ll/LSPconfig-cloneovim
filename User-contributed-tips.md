@@ -387,4 +387,32 @@ require('lspconfig').jsonls.setup {
   },
 }
 ```
+# ltex-ls
+
+To add the user dictionary from the built-in Neovim spell checker to `ltex-ls`, add the following to your LSP setup:
+
+```
+-- ===========================================
+--  Add user dictionary for ltex-ls
+--  * en.utf-8.add must be created using `zg`
+-- ===========================================
+local path = vim.fn.stdpath 'config' .. '/spell/en.utf-8.add'
+local words = {}
+
+for word in io.open(path, 'r'):lines() do
+  table.insert(words, word)
+end
+
+nvim_lsp.ltex.setup {
+  on_attach = on_attach,
+  settings = {
+    ltex = {
+      dictionary = {
+        ['en-US'] = words,
+      },
+    },
+  },
+}
+```
+The changes take places when you reload the config.
 
