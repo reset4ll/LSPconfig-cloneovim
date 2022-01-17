@@ -416,3 +416,25 @@ nvim_lsp.ltex.setup {
 ```
 The changes take places when you reload the config.
 
+# Use nvim-notify to display LSP messages
+
+The [nvim-notify](https://github.com/rcarriga/nvim-notify) plugin can be used to display messages received from the LSP server.
+
+```lua
+vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
+  local lvl = ({
+    'ERROR',
+    'WARN',
+    'INFO',
+    'DEBUG',
+  })[result.type]
+  notify({ result.message }, lvl, {
+    title = 'LSP | ' .. client.name,
+    timeout = 10000,
+    keep = function()
+      return lvl == 'ERROR' or lvl == 'WARN'
+    end,
+  })
+end
+```
