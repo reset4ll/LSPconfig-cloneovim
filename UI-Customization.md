@@ -5,8 +5,8 @@
 Floating windows with borders are built-into the neovim core handler. The borders can be styled by passing in a character and highlight group. Highlight groups must be set with an autocmd to avoid being overwritten by your colorscheme.
 
 ```lua
-vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]]
-vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
 
 local border = {
       {"🭽", "FloatBorder"},
@@ -125,7 +125,7 @@ function PrintDiagnostics(opts, bufnr, line_nr, client_id)
   vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
 end
 
-vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
+vim.cmd [[ autocmd! CursorHold * lua PrintDiagnostics() ]]
 ```
 ### Show line diagnostics automatically in hover window
 
@@ -138,7 +138,7 @@ vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {f
 
 For diagnostics for specific cursor position
 ```lua 
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
 ```
 
 
@@ -212,10 +212,10 @@ See the properties of the signs with `sign list`.
 
 ```lua
 vim.cmd [[
-  highlight DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
-  highlight DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
-  highlight DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
-  highlight DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
+  highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
+  highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
+  highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
+  highlight! DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
 
   sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
   sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
@@ -230,13 +230,13 @@ Add the following to your on_attach (this allows checking server capabilities to
 ```lua
 if client.resolved_capabilities.document_highlight then
     vim.cmd [[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+      hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+      hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+      hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
       augroup lsp_document_highlight
         autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        autocmd! CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd! CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]]
 end
