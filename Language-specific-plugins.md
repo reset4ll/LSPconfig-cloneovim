@@ -10,3 +10,4 @@ Some servers send requests outside of the language server protocol specification
 * [SchemaStore.nvim](https://github.com/b0o/SchemaStore.nvim) (jsonls): Note, this provides schemas for jsonls but still depends on lspconfig.
 * [grammar-guard.nvim](https://github.com/brymer-meneses/grammar-guard.nvim) (ltex-ls)
 * [omnisharp-extended-lsp.nvim](https://github.com/Hoffs/omnisharp-extended-lsp.nvim) Add support for decompiling.
+* [clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim) Add inlay support for cpp and c 
