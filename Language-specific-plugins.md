@@ -12,3 +12,4 @@ Some servers send requests outside of the language server protocol specification
 * [omnisharp-extended-lsp.nvim](https://github.com/Hoffs/omnisharp-extended-lsp.nvim) (omnisharp) Add support for decompiling.
 * [csharpls-extended-lsp.nvim](https://github.com/chen244/csharpls-extended-lsp.nvim) (csharp_ls) Add support for decompiling.
 * [clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim) Clangd's extra features (inlay hints, type hierarchy, ...etc) for C and C++
+* [Ionide](https://github.com/ionide/Ionide-vim) for [F#](https://fsharp.org)
