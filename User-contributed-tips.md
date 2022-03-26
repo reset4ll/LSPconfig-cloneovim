@@ -391,7 +391,7 @@ require('lspconfig').jsonls.setup {
 
 To add the user dictionary from the built-in Neovim spell checker to `ltex-ls`, add the following to your LSP setup:
 
-```
+```lua
 -- ===========================================
 --  Add user dictionary for ltex-ls
 --  * en.utf-8.add must be created using `zg`
