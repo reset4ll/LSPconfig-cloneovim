@@ -5,7 +5,7 @@ To enable snippets support for a given server with LuaSnip, the main steps are t
 * set up your snippets source, and the autocompletion plugin to acknowledge the snippets source
 * map the confirm and expand snippets keybinds.
 
-### nvim-cmp and luasnip
+## nvim-cmp and luasnip
 
 ```lua
 local use = require('packer').use
